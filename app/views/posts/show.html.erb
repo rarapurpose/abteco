@@ -3,7 +3,13 @@
     <div class="post__wrapper">
       <p class="post__hedding">
         <%= @post.title %>
-      </p>
+      </p>      
+       <% if user_signed_in? && current_user.id == @post.user_id %>
+        <div class="post__manage">
+          <%= link_to "EDIT", class: :post__btn %>
+          <%= link_to "DELETE", class: :post__btn %>
+        </div>
+       <% end %>
       <div class="post__image">
         <%= image_tag(@post.image, class: :card__img) %>
       </div>
