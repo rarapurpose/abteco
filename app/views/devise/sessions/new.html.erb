@@ -1,7 +1,8 @@
 <div class="main">
   <div class="inner">
     <div class="form__wrapper">
-      <h2 class="page-heading">Log In</h2> 
+      <h2 class="page-heading">log in</h2>
+        <%= form_with model: @user, url: user_session_path, local: true do |f| %>
 
         <div class="field">
           <%= f.label :email, "email" %><br />
@@ -14,9 +15,9 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "Log In", class: :form__btn %>
+          <%= f.submit "log in", class: :form__btn %>
         </div>
-
+      <% end %>
     </div>
   </div>
 </div>

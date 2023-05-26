@@ -1,8 +1,12 @@
 <main class="main">
   <div class="inner">
-   <div class="greeting"> 
+  <% if user_signed_in? %>
+    <div class="greeting"> 
       Your eco life by. 
-      </div>     
+      <%= link_to "#{current_user.name}", user_path(current_user.id), class: :greeting__link%>
+    </div> 
+    <% end %>
+
     <div class="card__wrapper">
     <%= render partial: 'post', collection: @posts %>
     </div>
