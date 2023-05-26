@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
   </head>
 
-
   <body>
     <header class="header">
       <div class="inner">
@@ -19,8 +18,17 @@
           <div class="nav__left">
             <%= link_to image_tag("logo2.png", class: :logo), root_path %>
           </div>
-
-
+          <% if user_signed_in? %>
+             <div class="nav__right">
+             <%= link_to "log out", class: :nav__logout %>
+             <%= link_to "+", class: :nav__btn %>
+             </div>
+             <% else %>
+            <div class="nav__right">
+              <%= link_to "log in", class: :nav__btn %>
+              <%= link_to "sign up", class: :nav__btn %>
+            </div>
+            <% end %>
         </div>
       </div>
     </header>
@@ -30,3 +38,4 @@
     </footer>
   </body>
 </html>
+
