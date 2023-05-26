@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :move_to_index, except: [:index, :show]
+
   def index
     @posts = Post.all
   end
@@ -50,4 +53,10 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :detail, :image).merge(user_id: current_user.id)
   end
 
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+  
 end
