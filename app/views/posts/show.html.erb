@@ -1,0 +1,35 @@
+<main class="main">
+  <div class="inner">
+    <div class="post__wrapper">
+      <p class="post__hedding">
+        <%= @post.title %>
+      </p>
+      <div class="post__image">
+        <%= image_tag(@post.image, class: :card__img) %>
+      </div>
+      <div class="post__body">
+        <div class="post__detail">
+          <p class="post__title">DETAIL</p>
+          <p class="post__message">
+            <%= @post.detail %>
+          </p>
+      </div>    
+        </div>
+
+      <div class="post__comments">
+       <% if user_signed_in? %>
+          <%= form_with model: [@post], local: true do |f|%>
+            <div class="field">
+              <%= f.label :content, "COMMENT" %><br />
+              <%= f.text_field :content, id:"comment_content" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "SEND", class: :form__btn  %>
+            </div>
+          <% end %>
+       <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
