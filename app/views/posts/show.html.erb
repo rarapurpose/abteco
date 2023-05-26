@@ -3,7 +3,9 @@
     <div class="post__wrapper">
       <p class="post__hedding">
         <%= @post.title %>
-      </p>            
+      </p>
+
+      <%= link_to "by #{@post.user.name}", user_path(@post.user.id), class: :post__user %>
        <% if user_signed_in? && current_user.id == @post.user_id %>
         <div class="post__manage">
           <%= link_to "編集", edit_post_path(@post.id), class: :post__btn %>
@@ -25,7 +27,7 @@
 
       <div class="post__comments">
        <% if user_signed_in? %>
-          <%= form_with model: [@post], local: true do |f|%>
+          <%= form_with model: [@post,@comment], local: true do |f|%>
             <div class="field">
               <%= f.label :content, "COMMENT" %><br />
               <%= f.text_field :content, id:"comment_content" %>
@@ -35,6 +37,14 @@
             </div>
           <% end %>
        <% end %>
+
+        <ul class="comments_lists">
+         <% @post.comments.each do |comment| %>
+            <li class="comments_list">
+              <%= comment.content %>
+              <%= link_to comment.user.name, user_path(comment.user.id), class: :comment_user %>
+            </li>
+         <% end %>
         </ul>
       </div>
     </div>

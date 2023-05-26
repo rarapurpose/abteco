@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class PostsController < ApplicationController 
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :move_to_index, except: [:index, :show]
 
@@ -23,6 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -45,8 +46,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
      @post.destroy
     redirect_to new
-  end  
-
+  end
+  
   private
   
   def post_params
@@ -58,5 +59,5 @@ class PostsController < ApplicationController
       redirect_to action: :index
     end
   end
-  
+
 end
